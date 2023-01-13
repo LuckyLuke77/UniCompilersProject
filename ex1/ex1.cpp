@@ -2,20 +2,21 @@
 #include <iostream>
 using namespace std;
 
-string GenerateString(string phrase) {
+const int NUM_OF_LOOPS = 150; // Maximum number of replacements the program will do before finishing
+void GenerateString(string phrase) {
     int numberOfWords;
     int randomIndex;
-    cout << phrase << endl;
-    for (int i = 0; i < 100; i++) {
+    int i = 1;
+    do {
+        cout << i << ". " << phrase << endl; // Print the phrase
         numberOfWords = WordCount(phrase); // Calculates the number of non-final words inside the phrase given
-        randomIndex = words[Random(1, numberOfWords) - 1] + 1; // Find the index of a random non-final word
+        randomIndex = words[Random(1, numberOfWords) - 1]; // Find the index of a random non-final word
         phrase = ReplaceSymbol(phrase, randomIndex); // Replace the non-final word
-        cout << phrase << endl;
-    }
-    return "";
+        i++;
+    } while (i <= NUM_OF_LOOPS && numberOfWords != 0);
 }
 
 int main() {
-    string initPhrase = "<Z>";
-    GenerateString(initPhrase);
+    string initPhrase = "<Z>"; // Initialize the phrase with the starting word
+    GenerateString(initPhrase); // Beging the generating proccess
 }

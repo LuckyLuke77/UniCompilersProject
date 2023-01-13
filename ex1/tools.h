@@ -1,26 +1,23 @@
 #include <iostream>
 using namespace std;
 
-string growList(string list, int growLen, int stopIndex) {
-    //for (int i = list.length(); i > stopIndex; i--) {
-        int i;
-        for (i = 0; i < growLen; i ++) {list += " ";}
-        int listLen = list.length() - growLen;
-        for (i = list.length(); i >= stopIndex; i --) {
-            list[i] = list[i - growLen];
-        }
-        return list;
-    //}
+int i;
+string growList(string list, int growLen, int stopIndex) { 
+    for (i = 0; i < growLen; i ++) {                    // Increase the size of the list
+        list += ' ';
+    }               
+    int listLen = list.length() - growLen;
+    for (i = list.length(); i >= stopIndex; i --) {     // Move everything to the right
+        list[i] = list[i - growLen];
+    }
+    return list;
 }
-
-string reduceList(string list, int reduceLen, int startIndex) {
-    int i;
-    for (i = startIndex; i < list.length(); i++) {
-        list[i - reduceLen] = list[i];
-    }
-    for (i = list.length(); i >= list.length() - reduceLen; i--) {
-        list[i] = ' ';
-    }
+                                                                    // EXAMPLE:
+string reduceList(string list, int reduceLen, int startIndex) {     // (<G><M>) 
+    for (i = startIndex; i < list.length(); i++) {                  //     ^- startIndex (4)
+        list[i - reduceLen] = list[i];                              // (v<M>)>) - replace <G> with v
+    }                                                               
+    list.erase(list.length() - reduceLen, list.length());           // (v<M>) - cleanup extra symbols
     return list;
 }
 
