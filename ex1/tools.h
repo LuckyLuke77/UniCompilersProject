@@ -6,7 +6,6 @@ string growList(string list, int growLen, int stopIndex) {
     for (i = 0; i < growLen; i ++) {                    // Increase the size of the list
         list += ' ';
     }               
-    int listLen = list.length() - growLen;
     for (i = list.length(); i >= stopIndex; i --) {     // Move everything to the right
         list[i] = list[i - growLen];
     }
